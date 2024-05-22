@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "installCommand": "pip install pipenv && pipenv install",
+    "buildCommand": "pipenv shell && python manage.py runserver",
+    "builds": [
+        {
+            "src": "quizz_django/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "Python3.12"
+            }
+        },
+        {
+            "src": "build_files.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "waste_build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "quizz_django/wsgi.py"
+        }
+    ],
+    "outputDirectory": "waste_build"
+}

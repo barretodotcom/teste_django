@@ -1,0 +1,33 @@
+{% if gir is not None %}
+  {% if gir == '1' %}
+    <dialog class="nes-dialog" id="dialog-default">
+      <h3 class="title">Acertou!</h3>
+      <div class="points">
+        <span>Você ganhou 20 pontos</span>
+        <i class="nes-icon coin is-medium animate"></i>
+      </div>
+      <menu class="dialog-menu">
+        {% if current_question == 5 %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Ranking</a>
+        {% else %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% endif %}
+      </menu>
+    </dialog>
+  {% else %}
+    <dialog class="nes-dialog" id="dialog-default">
+      <h3 class="title">Errou!</h3>
+      <div class="correct-answer-container">
+        <span class="title">A resposta correta era:</span>
+        <span class="nes-text is-error">{{ correct_answer }}</span>
+      </div>
+      <menu class="dialog-menu">
+        {% if current_question == 5 %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Ranking</a>
+        {% else %}
+          <a class="nes-btn is-primary" href="{{ next_page_url }}">Próxima Questão</a>
+        {% endif %}
+      </menu>
+    </dialog>
+  {% endif %}
+{% endif %}

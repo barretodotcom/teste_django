@@ -1,0 +1,29 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <h4>Como a população pode contribuir para a gestão adequada de resíduos sólidos, incluindo resíduos eletroeletrônicos?</h4>
+
+  <form id="form" class="questions" method="post" action="{% url "question_2" person.id %}">
+    {% csrf_token %}
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
+      <span>Descartando-os no lixo comum.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
+      <span>Deixando-os acumulados em casa.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
+      <span>Vendendo-os para ferro-velhos.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-4">
+      <span>Entregando-os em pontos de coleta específicos ou participando de campanhas de reciclagem.</span>
+    </label>
+  </form>
+
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
+{% endblock question %}
+
+

@@ -1,0 +1,45 @@
+{% extends "waste/base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block references %}
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/ranking.css" %}" />
+{% endblock references %}
+
+{% block content %}
+  <div class="ranking-content">
+    <div class="nes-table-responsive">
+      <table class="nes-table is-bordered is-centered is-dark">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Pontos</th>
+            <th>Tempo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for person in top_people %}
+            <tr {% if person == current_person %}class="{% include "waste/position_class.html" with position=current_person_position %}"{% endif %} >
+              <td class="text-center">
+                {% if person == current_person %}
+                  {{ current_person_position }}
+                {% else %}
+                  {{ forloop.counter }}
+                {% endif %}
+              </td>
+              <td>{{ person.name }}{% if forloop.counter == 1 %} <i class="nes-icon trophy is-small"></i>{% endif %} </td>
+              <td class="text-center">{{ person.score }}</td>
+              <td class="text-center">{{ person.get_finished_quizz_time|format_duration }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="back-button">
+    <a class="play-game" href="{% url "dashboard" %}"><button type="button" class="nes-btn is-warning">voltar</button></a>
+  </div>
+{% endblock content %}

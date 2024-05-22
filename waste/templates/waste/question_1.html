@@ -1,0 +1,27 @@
+{% extends "waste/question_base.html" %}
+
+{% block question %}
+  <h4>O que são pontos de coleta de resíduos sólidos, incluindo resíduos eletroeletrônicos?</h4>
+
+  <form id="form" class="questions" method="post" action="{% url "question_1" person.id %}">
+    {% csrf_token %}
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-1" required>
+      <span>Locais onde os produtos eletrônicos são vendidos.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-2">
+      <span>Locais onde os produtos eletrônicos são descartados indiscriminadamente.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-3">
+      <span>Locais designados para a entrega voluntária de produtos eletrônicos descartados pela população.</span>
+    </label>
+    <label>
+      <input class="nes-radio" type="radio" name="answer" value="ans-4">
+      <span>Locais onde os produtos eletrônicos são fabricados.</span>
+    </label>
+  </form>
+
+  <button type="submit" class="nes-btn is-success" form="form">Próxima</button>
+{% endblock question %}

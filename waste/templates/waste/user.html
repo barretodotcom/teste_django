@@ -1,0 +1,44 @@
+{% extends "waste/base.html" %}
+
+{% load static %}
+
+{% block references %}
+  <link rel="stylesheet" type="text/css" href="{% static "waste/css/user.css" %}" />
+{% endblock references %}
+
+{% block content %}
+  <div class="user-container">
+    <div class="nes-container is-centered is-rounded with-title">
+      <form class="nes-field" method="post" action="{% url "user" %}">
+        {% csrf_token %}
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        <button type="submit" class="nes-btn is-success play-game">aceitar</button>
+      </form>
+    </div>
+
+    <div class="back-button">
+      <a class="play-game" href="{% url "dashboard" %}"><button type="button" class="nes-btn is-warning">voltar</button></a>
+    </div>
+  </div>
+
+  {% if form.errors %}
+    <dialog class="nes-dialog" id="dialog-default">
+      <form method="dialog" class="error-container">
+        <h3 class="title">Erro</h3>
+        <span>{{ form.name.errors.as_text }}</span>
+        <menu class="dialog-menu">
+          <button class="nes-btn is-primary">Tudo bem</button>
+        </menu>
+      </form>
+    </dialog>
+  {% endif %}
+
+{% endblock content %}
+
+
+{% if form.errors %}
+  {% block script %}
+    {% include "waste/show_modal.html" %}
+  {% endblock script %}
+{% endif %}
