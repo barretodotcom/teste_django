@@ -5,6 +5,7 @@ name = "pypi"
  
 [packages]
 django = "*"
- 
+whitenoise = "==5.3.0"
+
 [requires]
 python_version = "3.12"
