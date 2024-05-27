@@ -17,24 +17,12 @@
             "config": {
                 "distDir": "staticfiles"
             }
-        },
-        {
-            "src": "staticfiles/**/*",
-            "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
             "dest": "quizz_django/wsgi.py"
-        },
-        {
-            "src": "/static/(.*)",
-            "dest": "/staticfiles/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "manage.py"
         }
     ],
     "outputDirectory": "staticfiles"
