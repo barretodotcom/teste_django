@@ -1,7 +1,7 @@
 {
     "version": 2,
     "installCommand": "pip install pipenv && pipenv install",
-    "buildCommand": "pipenv shell && python manage.py runserver",
+    "buildCommand": "pipenv shell && python manage.py collectstatic --noinput",
     "builds": [
         {
             "src": "quizz_django/wsgi.py",
@@ -15,15 +15,27 @@
             "src": "build_files.sh",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "waste_build"
+                "distDir": "staticfiles"
             }
+        },
+        {
+            "src": "staticfiles/**/*",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
             "dest": "quizz_django/wsgi.py"
+        },
+        {
+            "src": "/static/(.*)",
+            "dest": "/staticfiles/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "manage.py"
         }
     ],
-    "outputDirectory": "waste_build"
+    "outputDirectory": "staticfiles"
 }
