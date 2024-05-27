@@ -3,63 +3,79 @@
 {% load static %}
 
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quizz !</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizz !</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.cdnfonts.com/css/a-autobus-omnibus"
+      rel="stylesheet"
+    />
+    <link href="http://fonts.cdnfonts.com/css/press-start" rel="stylesheet" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
-  <link href="http://fonts.cdnfonts.com/css/a-autobus-omnibus" rel="stylesheet">
-  <link href="http://fonts.cdnfonts.com/css/press-start" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'waste/css/question.css' %}"
+    />
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/nes.css/css/nes-core.min.css"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" type="text/css" href="{% static "waste/css/question.css" %}" />
-  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    {% block references %}{% endblock references %}
+  </head>
 
-  {% block references %}{% endblock references %}
-</head>
+  <body>
+    <div class="main-content">
+      <div class="questions-background">
+        <div class="questions-container">
+          {% include "waste/progress_bar.html" %}
 
-<body>
-  <div class="main-content">
-    <div class="questions-background">
-      <div class="questions-container">
-        {% include "waste/progress_bar.html" %}
-
-        <div class="nes-container is-rounded">
-          {% block question %}{% endblock question %}
+          <div class="nes-container is-rounded">
+            {% block question %}{% endblock question %}
+          </div>
         </div>
-      </div>
 
-      {% include "waste/gir.html" %}
-      {% include "waste/penalize_cheater.html" %}
-
-      {% if messages %}
+        {% include "waste/gir.html" %} {% include "waste/penalize_cheater.html"
+        %} {% if messages %}
         <dialog class="nes-dialog" id="dialog-default">
           <form method="dialog" class="error-container">
             <h3 class="title">Erro</h3>
             {% for message in messages %}
-              <span>{{ message }}</span>
+            <span>{{ message }}</span>
             {% endfor %}
             <menu class="dialog-menu">
               <button class="nes-btn is-primary">Tudo bem</button>
             </menu>
           </form>
         </dialog>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 
-{% if gir is not None or is_cheating or messages %}
-  {% block script %}
-    {% include "waste/show_modal.html" %}
-  {% endblock script %}
-{% endif %}
+  {% if gir is not None or is_cheating or messages %} {% block script %} {%
+  include "waste/show_modal.html" %} {% endblock script %} {% endif %}
 </html>
