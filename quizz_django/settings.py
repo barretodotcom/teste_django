@@ -78,10 +78,14 @@ WSGI_APPLICATION = 'quizz_django.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'verceldb',
+       'USER': 'default',
+       'PASSWORD': 'tC6pqAla2EhM',
+       'HOST': 'ep-blue-shape-a4a1qj14-pooler.us-east-1.aws.neon.tech',
+       'PORT': '5432',
+   }
 }
 
 
@@ -119,7 +123,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
